@@ -21,6 +21,24 @@ services:
       - 33060:3306
     volumes:
       - db-store:/var/lib/mysql
+  phpmyadmin:
+    # Docker Hubからイメージをダウンロード
+    image: phpmyadmin/phpmyadmin:5
+
+    # コンテナの名前
+    container_name: phpmyadmin
+
+    # コンテナと他のサービスを繋げる
+    links:
+      - db
+
+    # localhost:8080 で phpmyadmin の管理画面にアクセス
+    ports:
+      - 9090:80
+
+    # セッション情報をボリュームに設定して永続化
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
 
 volumes:
   db-store:
