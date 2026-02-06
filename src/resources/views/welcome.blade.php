@@ -234,6 +234,12 @@
                 font-size: 0.85rem;
             }
 
+            .footer button:disabled {
+                background: #fed7aa;
+                color: #9a3412;
+                cursor: not-allowed;
+            }
+
             @media (max-width: 640px) {
                 .todo-app {
                     padding: 24px;
@@ -340,6 +346,7 @@
                 totalCount.textContent = total;
                 completedCount.textContent = completed;
                 activeCount.textContent = total - completed;
+                clearCompletedButton.disabled = completed === 0;
             };
 
             const renderTodos = () => {
